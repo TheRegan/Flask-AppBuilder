@@ -85,23 +85,18 @@ OAUTH_PROVIDERS = [
             "authorize_url": "https://login.microsoftonline.com/{AZURE_TENANT_ID}/oauth2/authorize",
         },
     },
-    {
-        "name": "okta",
+    {   
+        "name": "xero",
         "icon": "fa-circle-o",
         "token_key": "access_token",
         "remote_app": {
-            "client_id": os.environ.get("OKTA_KEY"),
-            "client_secret": os.environ.get("OKTA_SECRET"),
-            "api_base_url": "https://{}.okta.com/oauth2/v1/".format(
-                os.environ.get("OKTA_DOMAIN")
-            ),
-            "client_kwargs": {"scope": "openid profile email groups"},
-            "access_token_url": "https://{}.okta.com/oauth2/v1/token".format(
-                os.environ.get("OKTA_DOMAIN")
-            ),
-            "authorize_url": "https://{}.okta.com/oauth2/v1/authorize".format(
-                os.environ.get("OKTA_DOMAIN")
-            ),
+            "client_id": os.environ.get("XERO_KEY"),
+            "client_secret": os.environ.get("XERO_SECRET"),
+            "api_base_url": "https://api.xero.com/api.xro/2.0/",
+            "client_kwargs": {"scope": "openid profile email offline_access accounting.contacts accounting.transactions"},
+            "request_token_url": None,
+            "access_token_url": "https://identity.xero.com/connect/token",
+            "authorize_url": "https://login.xero.com/identity/connect/authorize",
         },
     },
 ]
