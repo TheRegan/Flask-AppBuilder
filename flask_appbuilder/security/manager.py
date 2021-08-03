@@ -627,6 +627,17 @@ class BaseSecurityManager(AbstractSecurityManager):
                 "email": data.get("email", ""),
                 "role_keys": data.get("groups", []),
             }
+        # for Xero
+        if provider == "xero":
+            me = self.appbuilder.sm.oauth_remotes[provider].get("userinfo")
+            data = me.json()
+            log.debug("User info from Xero: {0}".format(data))
+            return {
+                "username": "xero_" + data.get("sub", ""),
+                "first_name": data.get("given_name", ""),
+                "last_name": data.get("family_name", ""),
+                "email": data.get("email", ""),
+            }
         else:
             return {}
 
